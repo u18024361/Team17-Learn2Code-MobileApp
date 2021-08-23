@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reply</ion-title>
+     <ion-icon (click)="close()" slot="end" style="font-size: 30px;" name="close-outline"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div style="text-align: center;">
+<h1>{{message.tutor?.tutorName}}</h1>
+<h3>"{{message.messageSent}}"</h3>
+</div>
+<br>
+<ion-item style="width: 95%;">
+  <ion-label position="floating">Message</ion-label>
+  <ion-textarea [(ngModel)]="replymessage.MessageSent" ></ion-textarea>
+</ion-item>
+<ion-button (click)="reply()" color="primary" expand="full">Reply</ion-button>
+</ion-content>
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>New Message</ion-title>
+    <ion-icon slot="end" style="font-size: 30px;" name="close-outline"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-item>
+    <ion-label>Tutor</ion-label>
+    <ion-select placeholder="Select a tutor">
+      <ion-select-option value="f">Hermione</ion-select-option>
+      <ion-select-option value="m">Nick</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item style="width: 95%;">
+    <ion-label position="floating">Message</ion-label>
+    <ion-textarea></ion-textarea>
+  </ion-item>
+  <br>
+<ion-button (click)="presentAlert()" color="primary" expand="full">Send</ion-button>
+</ion-content> -->
