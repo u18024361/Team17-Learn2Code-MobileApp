@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit profile</ion-title>
+    <ion-icon  slot="end" (click)="close()"  style="font-size: 30px;" name="close-outline"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">First Name:</ion-label>
+    <ion-input  [(ngModel)]="student.studentName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Surname:</ion-label>
+    <ion-input [(ngModel)]="student.studentSurname"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Username:</ion-label>
+    <ion-input [(ngModel)]="student.identity.userName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Email:</ion-label>
+    <ion-input [(ngModel)]="student.identity.email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Cell Number</ion-label>
+    <ion-input  [(ngModel)]="student.studentCell"></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label>University</ion-label>
+    <ion-select placeholder="Select" [(ngModel)]="uni"  (ionChange)="selectuni($event.target.value)" okText="Okay" cancelText="Dismiss">
+      <ion-select-option  *ngFor="let uni of uniList"   value="{{uni.id}}" >{{uni.universityName}}</ion-select-option>
+     
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="degreelist?.length > 0">
+    <ion-label>Degree</ion-label>
+    <ion-select  placeholder="Select" value="brown" okText="Okay" cancelText="Dismiss" (ionChange)="selecdegree($event.target.value)">
+      <ion-select-option  *ngFor="let degree of degreelist"   value="{{degree.id}}" >{{degree.degreeName}}</ion-select-option>
+     
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="Modulelist?.length > 0">
+    <ion-label>Module</ion-label>
+    <ion-select [(ngModel)]="student.ModuleId"  placeholder="Select" value="brown" okText="Okay" cancelText="Dismiss">
+      <ion-select-option  *ngFor="let module of Modulelist"   value="{{module.id}}" >{{module.moduleCode}}</ion-select-option>
+     
+    </ion-select>
+  </ion-item>
+  <br>
+  <ion-button [disabled]="!student.ModuleId" (click)="updatestudent()" expand="block">Update</ion-button>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit profile</ion-title>
+    <ion-icon  slot="end" (click)="close()"  style="font-size: 30px;" name="close-outline"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<br>
+<ion-content>
+  <ion-item >
+    <ion-label>Tutor</ion-label>
+    <ion-select (ionChange)="selectTutor($event.target.value)" placeholder="Select"  okText="Okay" cancelText="Dismiss">
+      <ion-select-option *ngFor="let tut of tutors"   value="{{tut.userId}},{{tut.id}}">{{tut.tutorName}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-textarea [(ngModel)]="message.MessageSent" placeholder="Enter message here..."></ion-textarea>
+  </ion-item>
+  <ion-button (click)="sendMessage()"  expand="block">Send</ion-button>
+</ion-content>
+
