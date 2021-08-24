@@ -13,6 +13,8 @@ export class CreateMessageComponent implements OnInit {
   tutors: any = [];
   message: Messaging = <Messaging>{};
   nameArr: any = [];
+  tut:any;
+  l:any;
   constructor(
     private service: StudentServiceService,
     public alertController: AlertController,
