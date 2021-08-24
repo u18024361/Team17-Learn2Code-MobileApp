@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { StudentServiceService } from 'src/Shared/student-service.service';
 import { Student } from 'src/Shared/student.model';
+import Swal from 'sweetalert2';
 import { EditPage } from '../folder/edit/edit.page';
 
 
@@ -19,7 +20,7 @@ export class FolderPage implements OnInit {
   id:any =1;
 
   constructor(private activatedRoute: ActivatedRoute, private service: StudentServiceService,
-    public modalController: ModalController,public alertController: AlertController) { }
+    public modalController: ModalController,public alertController: AlertController,private _router: Router) { }
 
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
@@ -89,5 +90,18 @@ export class FolderPage implements OnInit {
       });
   }
   
+  delete(id){
+    console.log(id)
+    this.service.delete(id).subscribe((res) => {
+      console.log(res)
+      Swal.fire('Saved!', res.message, 'success');
+      localStorage.clear();
+      this._router.navigate(["/login"]);
+  },(error) => {
+    
+    Swal.fire('Error!', error.error, 'error');
+  }
+  );
+  }
 
 }

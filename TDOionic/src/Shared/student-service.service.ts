@@ -63,5 +63,9 @@ messagereply: any = <any>{};
   Login(obj):Observable<any>{
     return this.http.post(this.urlLogin+'Login/',obj);
   }
+
+  delete(id):Observable<any>{
+    return this.http.delete(this.url+'DeleteStudent/'+id);
+  }
 }
 
