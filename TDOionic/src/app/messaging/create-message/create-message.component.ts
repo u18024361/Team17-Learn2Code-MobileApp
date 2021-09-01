@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Messaging } from 'src/Shared/messaging.model';
 import { StudentServiceService } from 'src/Shared/student-service.service';
+import { Student } from 'src/Shared/student.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,6 +16,8 @@ export class CreateMessageComponent implements OnInit {
   nameArr: any = [];
   tut:any;
   l:any;
+  id:any=1;
+  student: any = <any>{};
   constructor(
     private service: StudentServiceService,
     public alertController: AlertController,
@@ -27,8 +30,17 @@ export class CreateMessageComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
   ngOnInit() {
+    this.id = localStorage.getItem('user');
+    this.GetStudent();
     this.GetTutor()
   }
+  GetStudent(){
+    this.service.getStudent(this.id).subscribe((result) => {
+      console.log(result);
+      this.student = result;
+      console.log(this.student)
+    });
+}
 
   GetTutor() {
     this.service.gettutor().subscribe((result) => {
@@ -47,8 +59,9 @@ export class CreateMessageComponent implements OnInit {
   sendMessage(){
     this.message.ReceiverId = this.nameArr[0];
     this.message.TutorId = this.nameArr[1]
-    this.message.SenderId = "8be87939-d377-4a1c-96a4-61f69ae8174b";
-    this.message.StudentId =5;
+    this.message.SenderId =  this.id;
+    this.message.StudentId = this.student.id;
+    console.log( this.student );
     this.service.createmessage(this.message).subscribe((result) => {
       console.log(this.tutors);
       Swal.fire('Saved!', result.message, 'success');
