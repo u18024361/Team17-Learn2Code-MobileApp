@@ -59,7 +59,7 @@ export class CreateMessageComponent implements OnInit {
   sendMessage(){
     this.message.ReceiverId = this.nameArr[0];
     this.message.TutorId = this.nameArr[1]
-    this.message.SenderId = "8be87939-d377-4a1c-96a4-61f69ae8174b";
+    this.message.SenderId =  this.id;
     this.message.StudentId = this.student.id;
     console.log( this.student );
     this.service.createmessage(this.message).subscribe((result) => {
