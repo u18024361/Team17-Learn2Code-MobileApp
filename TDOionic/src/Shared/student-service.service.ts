@@ -53,7 +53,8 @@ messagereply: any = <any>{};
   }
 
   getGroup(UserId):Observable<any>{
-    return this.http.get(this.url+'GetMyGroupSessions/'+UserId);
+    return this.http.get(this.url+'GetMyGroupSessionsIonic/'+UserId);
+    
   }
 
   getIndividual(id):Observable<any>{

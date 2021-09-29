@@ -65,8 +65,15 @@ export class FolderPage implements OnInit {
     const modal = await this.modalController.create({
       component: EditPage,
       cssClass: 'my-custom-class'
+
+      
     });
+    modal.onDidDismiss().then(data => {
+      console.log('dismissed');
+      window.location.reload();
+  });
     return await modal.present();
+    
   }
   
   ngOnInit() {
